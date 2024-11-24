@@ -10,7 +10,6 @@ methods (Test)
     end
 
     function check_point_distribution(tst)
-        rnd_strm = RandStream("mt19937ar", Seed = 1);
         for seed = 1 : 10
             rnd_strm = RandStream("mt19937ar", Seed = seed);
             n_points = randi(rnd_strm, [1e+2, 1e+5]);
@@ -22,7 +21,7 @@ methods (Test)
             end
             tst.verifyTrue(isempty(inds));
 
-            ids = find(bcc > 1.0 & bcc < 0.0);
+            ids = find(bcc > 1.0 & bcc < 0.0); %#ok<EFIND>
             tst.verifyTrue(isempty(ids));
         end
     end
